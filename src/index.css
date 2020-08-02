@@ -5,7 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("assets/background4.svg") no-repeat center center fixed;
+  background: rgb(239, 239, 239);
+  background: linear-gradient(
+      185deg,
+      rgba(239, 239, 239, 1) 6%,
+      rgba(29, 161, 242, 1) 88%,
+      rgba(83, 150, 163, 1) 100%
+    )
+    no-repeat center center fixed;
   background-size: "cover";
 }
 

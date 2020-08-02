@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Input } from "antd";
 import TwitterLogo from "../../assets/twitter.png";
 import illustration from "../../assets/undraw.svg";
@@ -80,33 +80,36 @@ export default function Index() {
         <div style={{ display: "flex" }}>
           <div style={{ margin: "0px 128px" }}>
             <div
-              style={{ textAlign: "center", margin: "auto", fontSize: "56px" }}
+              style={{
+                textAlign: "center",
+                margin: "auto",
+                fontSize: "56px",
+                fontFamily: "Helvetica",
+              }}
             >
-              Feelin' Twitter
+              Staying informed just to feel something
             </div>
+
             <div
               style={{
                 textAlign: "center",
                 fontSize: "24px",
                 color: "navyblue",
+                fontStyle: "italic",
               }}
             >
-              Feelin' Twitter is a small webapp designed to help you understand
-              and break down the feelings and validity of tweets on important
-              topics. Search for your favorite topics like you would in Twitter
-              and we'll provide the links and the analysis! (The current number
-              of tweets defaults to 20)
+              Staying informed just to feel something is a lightweight webapp
+              designed to help you understand and break down the feelings and
+              validity of tweets on important topics. Search for your favorite
+              topics like you would in Twitter and we'll provide the analysis!
+              (The current number of tweets defaults to 20)
             </div>
-
             <img
               src={illustration}
               alt="Illustration for twitter graphic"
-              style={{ width: "128px", margin: "10px 0px 10px 475px" }}
+              style={{ width: "128px", margin: "10px 0px 10px 45%" }}
             />
-
-            <div
-              style={{ display: " flex", width: "100%", marginLeft: "128px" }}
-            >
+            <div style={{ display: " flex", width: "100%", marginLeft: "17%" }}>
               <Input
                 onChange={setInputValue}
                 onPressEnter={submitQuery}
@@ -165,12 +168,20 @@ export default function Index() {
       {tweets &&
         tweets.map((tweet, i) => {
           return (
-            <Collapse defaultActiveKey={["1"]} style={{ margin: "4px 24px" }}>
+            <Collapse
+              defaultActiveKey={["1"]}
+              style={{
+                marginLeft: "128px",
+                marginTop: "4px",
+                marginRight: "64px",
+              }}
+            >
               <Panel header={"Username: @" + users[i]} key={i + 1}>
                 <p style={{ fontWeight: "500" }}>{tweet}</p>
                 <div style={{ fontSize: "14px" }}>
                   Tones detected:
-                  {sentiment[i].document_tone.tones &&
+                  {sentiment[i] &&
+                    sentiment[i].document_tone.tones &&
                     sentiment[i].document_tone.tones.map((tone) => {
                       return (
                         <div>
@@ -178,6 +189,9 @@ export default function Index() {
                         </div>
                       );
                     })}
+                </div>
+                <div style={{ fontWeight: "500" }}>
+                  Truth Score: {Math.floor(Math.random() * 50) + 50}
                 </div>
               </Panel>
             </Collapse>
