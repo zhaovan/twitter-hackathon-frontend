@@ -6,19 +6,31 @@ import { Collapse, Spin } from "antd";
 
 const { Panel } = Collapse;
 
+const colorMap = {
+  Joy: "",
+  Anger: "",
+  Fear: "",
+  Sadness: "",
+  Analytical: "",
+  Confident: "",
+  Tentative: "",
+};
+
 export default function Index() {
   const [searchValue, setSearchValue] = useState("");
   const [tweets, setTweets] = useState([]);
   const [sentiment, setSentiments] = useState([]);
   const [links, setLinks] = useState([]);
   const [users, setUsers] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const setInputValue = (e) => {
     setSearchValue(e.target.value);
   };
 
   const submitQuery = () => {
-    // console.log(isLoading);
+    console.log(isLoading);
+    setLoading(isLoading);
     const searchQuery = `/${searchValue}`;
     fetch(searchQuery)
       .then((res) => {
@@ -31,6 +43,7 @@ export default function Index() {
         setTweets(data.tweets);
       })
       .catch((err) => console.log(err));
+    setLoading(isLoading);
   };
 
   return (
@@ -64,7 +77,7 @@ export default function Index() {
         </div>
       </div>
 
-      {/* {isLoading && <Spin />} */}
+      {isLoading && <Spin />}
 
       <Collapse defaultActiveKey={["1"]}>
         {tweets &&
